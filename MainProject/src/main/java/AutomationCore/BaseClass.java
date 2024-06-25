@@ -1,4 +1,6 @@
 package AutomationCore;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -19,6 +21,9 @@ public class BaseClass {
 		{
 			throw new Exception("Invalid Name exception");
 		}
+	
+		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return driver;
 }
 }
