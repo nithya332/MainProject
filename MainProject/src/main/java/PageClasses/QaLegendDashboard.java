@@ -33,4 +33,12 @@ public class QaLegendDashboard {
 	{
 	PageUtilities.clickOnElement(Notesmenu);		
 }
+	public void messagemenuoption()
+	{
+		PageUtilities.clickOnElement(Messagemenu);
+	}
+	public void addclientoption()
+	{
+		PageUtilities.clickOnElement(Clientmenu);
+	}
 }

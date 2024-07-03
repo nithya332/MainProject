@@ -17,7 +17,10 @@ WebElement TitleField;
 WebElement DescriptionField;
 @FindBy(xpath="//button[@class='btn btn-primary']")
 WebElement Savebutton;
-
+@FindBy(xpath="//div[@id='note-table_filter']//input")
+WebElement notessearchbox;
+@FindBy(xpath="(//a[@class='edit'])[1]")
+WebElement searchtitle;
 
 public QaLegendNotesPage(WebDriver driver) {
 	this.driver=driver;
@@ -32,5 +35,19 @@ public void addNotes(String title,String description)
 	PageUtilities.enterText(TitleField, title);
 	PageUtilities.enterText(DescriptionField, description);
 	PageUtilities.clickOnElement(Savebutton);
+}
+
+public void searchNotes(String title)
+{
+	PageUtilities.clickOnElement(notessearchbox);
+	PageUtilities.enterText(notessearchbox, title);
+	
+}
+
+public String getNoteTitle()
+{
+	
+	String gettitle=PageUtilities.getElementText(searchtitle);
+	return gettitle;
 }
 }

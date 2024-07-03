@@ -6,7 +6,7 @@
       <class name="TestCase.QaLegend_TestCase">
         <methods>
           <include name="initialization"/>
-          <include name="loginToQaLegendApp"/>
+          <include name="editdetailsnote"/>
         </methods>
       </class> <!-- TestCase.QaLegend_TestCase -->
     </classes>
