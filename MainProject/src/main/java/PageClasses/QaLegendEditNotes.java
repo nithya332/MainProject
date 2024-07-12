@@ -10,6 +10,8 @@ import Utilities.PageUtilities;
 public class QaLegendEditNotes {
 
 WebDriver driver;
+@FindBy(xpath="//div[@id='note-table_filter']//input")
+WebElement search;
 @FindBy(xpath="//a[@class='edit']//i[1]")
 WebElement editbutton;
 @FindBy(xpath="//input[@id='title']")
@@ -19,7 +21,8 @@ WebElement edittitle;
 WebElement editdescription;
 @FindBy(xpath="//span[@class='fa fa-check-circle']")
 WebElement saveeditbutton;
-
+@FindBy(xpath="//strong[text()='Obsqura72999']")
+WebElement editedtitle;
 public QaLegendEditNotes(WebDriver driver) {
 	this.driver=driver;
 	PageFactory.initElements(driver,this);
@@ -27,11 +30,24 @@ public QaLegendEditNotes(WebDriver driver) {
 
 public void editnotes(String title,String description)
 {
-	PageUtilities.clickOnElement(editbutton);
-	PageUtilities.clickOnElement(edittitle);
+	PageUtilities.clickOnElement(search);
+	 PageUtilities.clickOnElement(editbutton); 
+		/*
+		 * PageUtilities.enterText(editbutton, editnamesearch);
+		 */
+	 PageUtilities.clickOnElement(edittitle);
+	 PageUtilities.clearText(edittitle);
 	PageUtilities.enterText(edittitle, title);
 	PageUtilities.clickOnElement(editdescription);
+	PageUtilities.clearText(editdescription);
 	PageUtilities.enterText(editdescription, description);
 	PageUtilities.clickOnElement(saveeditbutton);
 }
+
+public String getEditNoteStatus() {
+	PageUtilities.clickOnElement(editbutton);
+	String geteditnote=PageUtilities.getElementText(editedtitle);
+	return geteditnote;
 }
+}
+

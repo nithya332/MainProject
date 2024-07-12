@@ -44,10 +44,9 @@ public void searchNotes(String title)
 	
 }
 
-public String getNoteTitle()
-{
-	
-	String gettitle=PageUtilities.getElementText(searchtitle);
-	return gettitle;
-}
+
+ public String getNoteTitle() {
+  
+  String gettitle=PageUtilities.getElementText(searchtitle); return gettitle; }
+ 
 }

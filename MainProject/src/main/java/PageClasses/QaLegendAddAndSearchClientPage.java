@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import Utilities.PageUtilities;
 
-public class QaLegendAddClientPage {
+public class QaLegendAddAndSearchClientPage {
 
 WebDriver driver;
 @FindBy(xpath="//a[@class='btn btn-default']")
@@ -18,8 +18,11 @@ WebElement companynamefield;
 WebElement addressfield;
 @FindBy(xpath="//button[@class='btn btn-primary']")
 WebElement savebutton;
-
-public QaLegendAddClientPage(WebDriver driver) {
+@FindBy(xpath="//div[@id='client-table_filter']//input")
+WebElement searchbutton;
+@FindBy(xpath="//a[@class='edit'][1]")
+WebElement clientnamesearch;
+public QaLegendAddAndSearchClientPage(WebDriver driver) {
 	this.driver=driver;
 	PageFactory.initElements(driver, this);
 }
@@ -30,4 +33,17 @@ public void AddClient(String companyname,String address )
 	PageUtilities.enterText(addressfield, address);
 	PageUtilities.clickOnElement(savebutton);
 }
+public String searchclient(String clientsearch)
+
+{
+PageUtilities.clickOnElement(searchbutton);
+PageUtilities.enterText(clientnamesearch, clientsearch);
+return clientsearch;
+
 }
+
+public String getClient() {
+	  
+	  String gettitle=PageUtilities.getElementText(clientnamesearch); return gettitle; }
+	 
+	}

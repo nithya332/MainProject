@@ -26,6 +26,12 @@ WebElement tonamesearch;
 WebElement sendmessage;
 @FindBy(xpath="//span[@class='fa fa-send']")
 WebElement sendbutton;
+@FindBy(xpath="//a[text()='Sent items']")
+WebElement sentitems;
+@FindBy(xpath="//div[@class='media-body']")
+WebElement sentmessages;
+@FindBy(xpath="(//div[@id='message-details-section']//p)[2]")
+WebElement sentmessagedetail;
 
 public QaLegendMessagePage(WebDriver driver) {
 	this.driver=driver;
@@ -53,14 +59,16 @@ public void addMessages(String namesearch, String subuser,String descriptionmess
 	 
 }
 
+public void sentitems() throws InterruptedException
+{
+	Thread.sleep(5000);
+	PageUtilities.clickOnElement(sentitems);
+}
 
-
-	/*
-	 * PageUtilities.clickOnElement(compose);
-	 * PageUtilities.clickOnElement(tobutton); PageUtilities.enterText(subject,
-	 * subuser); PageUtilities.enterText(sendmessage, descriptionmessage);
-	 * PageUtilities.clickOnElement(sendbutton);
-	 */
-
+public String getMessageAddStatus() {
+	PageUtilities.clickOnElement(sentmessages);
+String getmessage=PageUtilities.getElementText(sentmessagedetail);
+return getmessage;
+}
 }
 

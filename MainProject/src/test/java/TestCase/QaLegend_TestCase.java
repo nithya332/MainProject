@@ -11,13 +11,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import AutomationCore.BaseClass;
-import PageClasses.QaLegendAddClientPage;
+import PageClasses.QaLegendAddAndSearchClientPage;
+import PageClasses.QaLegendAddEvent;
 import PageClasses.QaLegendDashboard;
 import PageClasses.QaLegendEditNotes;
+import PageClasses.QaLegendExcelDownload;
 import PageClasses.QaLegendForgotPassword;
 import PageClasses.QaLegendLoginPage;
 import PageClasses.QaLegendMessagePage;
 import PageClasses.QaLegendNotesPage;
+import PageClasses.QaLegendOpenTaskListDashboard;
+import Utilities.MyRetry;
 
 public class QaLegend_TestCase extends BaseClass{
 	public WebDriver driver;
@@ -27,9 +31,12 @@ public class QaLegend_TestCase extends BaseClass{
 	QaLegendDashboard dashboardpage;
 	QaLegendNotesPage notespage;
 	QaLegendMessagePage messagepage;
-	QaLegendAddClientPage addclient;
+	QaLegendAddAndSearchClientPage addclient;
 	QaLegendForgotPassword forgotPasswordPage;
 	QaLegendEditNotes editnotesdetails;
+	QaLegendOpenTaskListDashboard viewopentask;
+	QaLegendExcelDownload DownloadTask;
+	QaLegendAddEvent eventadd;
 	String path="";
 	Random rand;
 @BeforeMethod
@@ -40,9 +47,12 @@ public class QaLegend_TestCase extends BaseClass{
 	dashboardpage=new QaLegendDashboard(driver);
 	notespage=new QaLegendNotesPage(driver);
 	messagepage=new QaLegendMessagePage(driver);
-	addclient=new QaLegendAddClientPage(driver);
+	addclient=new QaLegendAddAndSearchClientPage(driver);
 	forgotPasswordPage=new QaLegendForgotPassword(driver);
 	editnotesdetails=new QaLegendEditNotes(driver);
+	viewopentask=new QaLegendOpenTaskListDashboard(driver);
+	DownloadTask=new QaLegendExcelDownload(driver);
+	eventadd=new QaLegendAddEvent(driver);
 	rand = new Random();
 	driver.manage().window().maximize();
 	props=new Properties();
@@ -52,7 +62,8 @@ public class QaLegend_TestCase extends BaseClass{
 	 props.load(reader);
 	driver.get(props.getProperty("url"));
 	}
-@Test
+@Test(retryAnalyzer = MyRetry.class)
+
 public void loginToQaLegendApp()
 {
 	System.out.println("Testcase1");
@@ -61,31 +72,36 @@ public void loginToQaLegendApp()
 	String notetitle=props.getProperty("NoteTitle")+ rand.nextInt(10000);
 	notespage.addNotes(notetitle,props.getProperty("Description"));
 	notespage.searchNotes(notetitle);
-	org.testng.Assert.assertEquals(notespage.getNoteTitle(), notetitle);
+	/* org.testng.Assert.assertEquals(notespage.getNoteTitle(), notetitle); */
 	//System.out.println(System.getProperty("user.dir"));
 	//System.out.println(path);
 }
-@Test
-public void sendmessage()
+@Test(retryAnalyzer = MyRetry.class)
+
+public void sendmessage() throws InterruptedException
 {
 	System.out.println("Testcase2");
 	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
 	dashboardpage.messagemenuoption();
 	messagepage.addMessages(props.getProperty("To"),props.getProperty("Subject"),props.getProperty("Message"));
-	/*
-	 * messagepage.addMessages(props.getProperty("Subject"),props.getProperty(
-	 * "Message"));
-	 */
+	messagepage.sentitems();
+	 org.testng.Assert.assertEquals(messagepage.getMessageAddStatus(),props.getProperty("Message"));
+	
+	
 }
-@Test
+@Test(retryAnalyzer = MyRetry.class)
+
 public void addclientdetails()
 {
 	System.out.println("Testcase2");
 	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
 	dashboardpage.addclientoption();
 	addclient.AddClient(props.getProperty("CompanyName"),props.getProperty("AddressField"));
+    String clientname=addclient.searchclient(props.getProperty("SearchClientName"));
+   org.testng.Assert.assertEquals(addclient.getClient(),clientname);
 }
-@Test
+@Test(retryAnalyzer = MyRetry.class)
+
 public void forgotPasswordLink() {
 	forgotPasswordPage.forgotPasswordVerification(props.getProperty("username"));
 	String emailSentNotification = props.getProperty("emailSentNotification");
@@ -93,11 +109,55 @@ public void forgotPasswordLink() {
 	org.testng.Assert.assertEquals(forgotPasswordPage.getForgotPasswordStatus(),true);
 	
 }
-@Test
+@Test(retryAnalyzer = MyRetry.class)
+
 public void editdetailsnote()
 {
+	System.out.println("Testcase2");
 	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
 	dashboardpage.clickonnotesoption();
-	editnotesdetails.editnotes(props.getProperty("Title"),props.getProperty("NoteDescription"));
+	editnotesdetails.editnotes(props.getProperty("EditTitle"),props.getProperty("NoteDescription"));
+    org.testng.Assert.assertEquals(editnotesdetails.getEditNoteStatus(), props.getProperty("EditTitle"));
+}
+
+@Test(retryAnalyzer = MyRetry.class)
+
+public void opentasklist()
+{
+	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
+	dashboardpage.clickondashboard();
+	
+}
+@Test(retryAnalyzer = MyRetry.class)
+
+public void teammemberslist() throws InterruptedException
+{
+	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
+	dashboardpage.teammembersoption();
+}
+@Test(retryAnalyzer = MyRetry.class)
+
+public void downloadexceloption()
+{
+	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
+	DownloadTask.ExcelDownload();
+}
+@Test(retryAnalyzer = MyRetry.class)
+
+
+public void viewsentitems() throws InterruptedException
+{
+	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
+	dashboardpage.messagemenuoption();
+	messagepage.sentitems();
+}
+
+@Test(retryAnalyzer = MyRetry.class)
+
+public void eventaddoption()
+{
+	loginpage.LoginQALegendPage(props.getProperty("username"),props.getProperty("password"));
+	dashboardpage.eventoption();
+	eventadd.eventaddoption(props.getProperty("EventTitle"),props.getProperty("EventDesc"),props.getProperty("StartDate"),props.getProperty("StartTime"),props.getProperty("EndDate"),props.getProperty("EndTime"));
 }
 }

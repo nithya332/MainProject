@@ -1,7 +1,8 @@
 package Utilities;
 
-import java.sql.Date;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DateUtility {
 public static String getCurrentDate()

@@ -15,6 +15,10 @@ public class QaLegendDashboard {
 	WebDriver driver;
 	@FindBy(xpath ="//span[text()='Dashboard']")
 	WebElement Dashboardmenu;
+	@FindBy(xpath="//div[@class='widget-details']//h1[1]")
+	WebElement opentask;
+	@FindBy(xpath="//div[@id='income-expense']//canvas[2]")
+	WebElement expense;
 	@FindBy(xpath="//span[text()='Events']")
 	WebElement Eventmenu;
 	@FindBy(xpath="//span[text()='Notes']")
@@ -23,12 +27,20 @@ public class QaLegendDashboard {
 	WebElement Messagemenu;
 	@FindBy(xpath="//span[text()='Clients']")
 	WebElement Clientmenu;
+	@FindBy(xpath="//span[text()='Team members']")
+	WebElement Teammember;
 	
 	public QaLegendDashboard(WebDriver driver) {
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
 	}
-	
+	public void clickondashboard()
+	{
+		PageUtilities.clickOnElement(Dashboardmenu);
+		PageUtilities.clickOnElement(opentask);
+		/* PageUtilities.clickOnElement(Dashboardmenu); */
+			/* PageUtilities.clickOnElement(expense); */
+	}
 	public void clickonnotesoption()
 	{
 	PageUtilities.clickOnElement(Notesmenu);		
@@ -41,4 +53,16 @@ public class QaLegendDashboard {
 	{
 		PageUtilities.clickOnElement(Clientmenu);
 	}
+	
+	public void teammembersoption() throws InterruptedException
+	{
+		Thread.sleep(5000);
+		PageUtilities.clickOnElement(Teammember);
+	}
+	
+	public void eventoption()
+	{
+		PageUtilities.clickOnElement(Eventmenu);
+	}
 }
+
