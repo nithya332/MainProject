@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="TestCase.QaLegend_TestCase" class="method navigator-link" hash-for-method="teammemberslist">teammemberslist</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="TestCase.QaLegend_TestCase" class="method navigator-link" hash-for-method="editdetailsnote">editdetailsnote</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -126,9 +126,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="teammemberslist">
-                  </a> <!-- teammemberslist -->
-                  <span class="method-name">teammemberslist</span>
+                  <a name="editdetailsnote">
+                  </a> <!-- editdetailsnote -->
+                  <span class="method-name">editdetailsnote</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -146,11 +146,12 @@
   &lt;listeners&gt;
     &lt;listener class-name=&quot;TestCase.Listeners&quot;/&gt;
   &lt;/listeners&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; parallel=&quot;methods&quot; name=&quot;Test&quot;&gt;
+    &lt;parameter name=&quot;browser&quot; value=&quot;chrome&quot;/&gt;
     &lt;classes&gt;
       &lt;class name=&quot;TestCase.QaLegend_TestCase&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;teammemberslist&quot;/&gt;
+          &lt;include name=&quot;editdetailsnote&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- TestCase.QaLegend_TestCase --&gt;
     &lt;/classes&gt;
@@ -194,14 +195,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'teammemberslist')
+data.setCell(0, 1, 'editdetailsnote')
 data.setCell(0, 2, 'TestCase.QaLegend_TestCase')
-data.setCell(0, 3, 8545);
+data.setCell(0, 3, 10753);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 8 seconds</span>
+              <span class="suite-total-time">Total running time: 10 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -216,29 +217,19 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">9 ignored methods</span>
+            <span class="header-content">4 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">TestCase.QaLegend_TestCase</span>
               <div class="ignored-methods-div">
+                <span class="ignored-method-name">AddNote</span>
+                <br/>
                 <span class="ignored-method-name">addclientdetails</span>
                 <br/>
-                <span class="ignored-method-name">viewsentitems</span>
+                <span class="ignored-method-name">composemessage</span>
                 <br/>
-                <span class="ignored-method-name">forgotPasswordLink</span>
-                <br/>
-                <span class="ignored-method-name">opentasklist</span>
-                <br/>
-                <span class="ignored-method-name">loginToQaLegendApp</span>
-                <br/>
-                <span class="ignored-method-name">eventaddoption</span>
-                <br/>
-                <span class="ignored-method-name">downloadexceloption</span>
-                <br/>
-                <span class="ignored-method-name">editdetailsnote</span>
-                <br/>
-                <span class="ignored-method-name">sendmessage</span>
+                <span class="ignored-method-name">addtask</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -252,12 +243,12 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">TestCase.QaLegend_TestCase</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
-                <span class="method-name">initialization</span>
+                <span class="method-name">initialization(chrome)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">teammemberslist</span>
-                <span class="method-start">3090 ms</span>
+                <span class="method-name">editdetailsnote</span>
+                <span class="method-start">4029 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

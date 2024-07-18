@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import Utilities.PageUtilities;
+import Utilities.WaitUtilities;
 
 public class QaLegendNotesPage {
 WebDriver driver;
@@ -21,6 +22,8 @@ WebElement Savebutton;
 WebElement notessearchbox;
 @FindBy(xpath="(//a[@class='edit'])[1]")
 WebElement searchtitle;
+@FindBy(xpath="//a[@title='Note']")
+WebElement notespage_notetitle;
 
 public QaLegendNotesPage(WebDriver driver) {
 	this.driver=driver;
@@ -37,10 +40,15 @@ public void addNotes(String title,String description)
 	PageUtilities.clickOnElement(Savebutton);
 }
 
-public void searchNotes(String title)
+public void searchNotes(String title , WebDriver driver) throws InterruptedException
 {
+	Thread.sleep(3000);
+	/* WaitUtilities.waitForAnElementToBeVisible(driver, notessearchbox); */
+	
 	PageUtilities.clickOnElement(notessearchbox);
+	PageUtilities.clearText(notessearchbox);
 	PageUtilities.enterText(notessearchbox, title);
+
 	
 }
 

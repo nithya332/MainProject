@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import Utilities.PageUtilities;
+import Utilities.WaitUtilities;
 
 public class QaLegendEditNotes {
 
@@ -16,7 +17,6 @@ WebElement search;
 WebElement editbutton;
 @FindBy(xpath="//input[@id='title']")
 WebElement edittitle;
-/* @FindBy(xpath="//textarea[@id='description']") */
 @FindBy(xpath="//textarea[@id='description']")
 WebElement editdescription;
 @FindBy(xpath="//span[@class='fa fa-check-circle']")
@@ -30,11 +30,9 @@ public QaLegendEditNotes(WebDriver driver) {
 
 public void editnotes(String title,String description)
 {
-	PageUtilities.clickOnElement(search);
-	 PageUtilities.clickOnElement(editbutton); 
-		/*
-		 * PageUtilities.enterText(editbutton, editnamesearch);
-		 */
+	
+	
+	 PageUtilities.clickOnElement(editbutton); 	
 	 PageUtilities.clickOnElement(edittitle);
 	 PageUtilities.clearText(edittitle);
 	PageUtilities.enterText(edittitle, title);
@@ -44,8 +42,14 @@ public void editnotes(String title,String description)
 	PageUtilities.clickOnElement(saveeditbutton);
 }
 
+public void searcheditednote(String title) {
+	/* WaitUtilities.waitForAnElementToBeVisible(driver, search); */
+	PageUtilities.clickOnElement(search);
+	PageUtilities.enterText(search, title);
+	
+}
+
 public String getEditNoteStatus() {
-	PageUtilities.clickOnElement(editbutton);
 	String geteditnote=PageUtilities.getElementText(editedtitle);
 	return geteditnote;
 }

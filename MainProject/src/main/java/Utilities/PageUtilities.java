@@ -1,6 +1,7 @@
 package Utilities;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -42,7 +43,7 @@ public class PageUtilities{
         actions.clickAndHold().build().perform();
     }
     
-
+    
 
 public static void cancelAnAlert(WebDriver driver) {
     driver.switchTo().alert().dismiss();
@@ -67,5 +68,34 @@ public static void clickAnElement(WebDriver driver,WebElement element) {
 public static void scrollThePage(WebDriver driver,WebElement element) {
     JavascriptExecutor executor = (JavascriptExecutor)driver;
     executor.executeScript("window.scrollBy(0,1000)", element);
+}
+public static void enterKeyPress(WebDriver driver) {
+	Actions action = new Actions(driver);
+	action.sendKeys(Keys.ENTER);
+	action.build().perform();
+}
+public static void escapeKeyPress(WebDriver driver) {
+	Actions action = new Actions(driver);
+	action.sendKeys(Keys.ESCAPE);
+	action.build().perform();
+}
+public static void arrowUpKeyPress(WebDriver driver) {
+	Actions action = new Actions(driver);
+	action.sendKeys(Keys.ARROW_UP);
+	action.build().perform();
+}
+public static void controlKeyPress(WebDriver driver) {
+	Actions action = new Actions(driver);
+	action.sendKeys(Keys.CONTROL);
+	action.build().perform();
+}
+public static void spaceKeyPress(WebDriver driver) {
+	Actions action = new Actions(driver);
+	action.sendKeys(Keys.SPACE);
+	action.build().perform();
+}
+public static void  maximizewindow(WebDriver driver)
+{
+	driver.manage().window().maximize();
 }
 }

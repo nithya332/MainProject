@@ -4,16 +4,19 @@
 	<listeners>
 		<listener class-name="TestCase.Listeners"></listener>
 	</listeners>
-  <test thread-count="5" name="Test">
+  <test thread-count="5" name="Test" parallel="methods">
+	<parameter name = "browser" value = "chrome"></parameter>
     <classes>
-      <class name="TestCase.QaLegend_TestCase"/>
+      <class name="TestCase.QaLegend_TestCase">
       <methods>
-		<!--<include name="loginToQaLegendApp"></include>
-		<include name="sendmessage"></include>-->
-		<!--<include name="addclientdetails"></include>-->
-		<include name="editdetailsnote"></include>
 		
-	  </methods>
+	<!--	<include name="addclientdetails"></include>
+-->		<include name="editdetailsnote"></include>
+		<!--<include name="AddNote"></include>-->
+		<!--<include name="addtask"></include>-->
+		<!--<include name="composemessage"></include>-->
+	 </methods>
+	  </class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -17,6 +17,7 @@ public class QaLegendDashboard {
 	WebElement Dashboardmenu;
 	@FindBy(xpath="//div[@class='widget-details']//h1[1]")
 	WebElement opentask;
+	
 	@FindBy(xpath="//div[@id='income-expense']//canvas[2]")
 	WebElement expense;
 	@FindBy(xpath="//span[text()='Events']")
@@ -29,6 +30,10 @@ public class QaLegendDashboard {
 	WebElement Clientmenu;
 	@FindBy(xpath="//span[text()='Team members']")
 	WebElement Teammember;
+	@FindBy(xpath="//span[text()='Projects']")
+	WebElement Projects;
+	@FindBy(xpath="//span[text()='Tasks']")
+	WebElement taskmenu;
 	
 	public QaLegendDashboard(WebDriver driver) {
 		this.driver=driver;
@@ -38,8 +43,7 @@ public class QaLegendDashboard {
 	{
 		PageUtilities.clickOnElement(Dashboardmenu);
 		PageUtilities.clickOnElement(opentask);
-		/* PageUtilities.clickOnElement(Dashboardmenu); */
-			/* PageUtilities.clickOnElement(expense); */
+		
 	}
 	public void clickonnotesoption()
 	{
@@ -63,6 +67,17 @@ public class QaLegendDashboard {
 	public void eventoption()
 	{
 		PageUtilities.clickOnElement(Eventmenu);
+	}
+	
+	public void project()
+	{
+		PageUtilities.clickOnElement(Projects);
+		PageUtilities.clickOnElement(taskmenu);
+	}
+	
+	public Boolean getViewStatus() {
+		boolean successmessage = PageUtilities.isElementDisplayed(opentask);
+		return successmessage;
 	}
 }
 

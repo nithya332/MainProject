@@ -10,8 +10,6 @@ import Utilities.PageUtilities;
 
 public class QaLegendMessagePage {
 WebDriver driver;
-//@FindBy(xpath="//span[text()='Messages']")
-//WebElement messagemenu;
 @FindBy(xpath="//a[@class='list-group-item'][1]")
 WebElement compose;
 @FindBy(xpath="//input[@class='form-control']")
@@ -38,13 +36,7 @@ public QaLegendMessagePage(WebDriver driver) {
 	PageFactory.initElements(driver, this);
 }
 
-/*
- * public void addMessages(String namesearch,String subuser,String
- * descriptionmessage) { PageUtilities.clickOnElement(compose);
- * PageUtilities.clickOnElement(tobutton);
- * PageUtilities.clickOnElement(tosearch); PageUtilities.enterText(tonamesearch,
- * namesearch);
- */
+
 public void addMessages(String namesearch, String subuser,String descriptionmessage)
 {
 	PageUtilities.clickOnElement(compose);
